@@ -1,8 +1,8 @@
 ﻿namespace AP001_DextraAlgorithm;
 
-public class Relation
+public class Edge
 {
     public int Weight { get; set; }
 
-    public required Node Destination { get; set; }
+    public required Node To { get; set; }
 }
