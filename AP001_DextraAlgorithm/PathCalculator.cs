@@ -15,17 +15,31 @@ public class PathCalculator
 
     public int CalculatePath(Node start, Node finish)
     {
+        var parents = new Dictionary<string, Node>();
+        var distance = new Dictionary<string, int>();
+
         DestinationTable = [];
 
-        AddToDestinationTable(0, start, finish);
+        AddToDestinationTable(0, start, finish, parents, distance);
 
         var count = DestinationTable.Count();
         Console.WriteLine(count);
 
-        return 0;
+        var result = DestinationTable
+            .Where(_ => _.EdgeTo == finish.Name)
+            .OrderByDescending(_ => _.Weight)
+            .First()
+            .Weight;
+
+        return result;
     }
 
-    private void AddToDestinationTable(int weightToEdge, Node start, Node finish)
+    private void AddToDestinationTable(
+        int weightToEdge,
+        Node start,
+        Node finish,
+        Dictionary<string, Node> parents,
+        Dictionary<string, int> distance)
     {
         foreach (var edge in start.Edges)
         {
@@ -55,8 +69,7 @@ public class PathCalculator
         {
             var nodeInTable = DestinationTable.First(_ => _.EdgeTo == edge.To.Name);
 
-            AddToDestinationTable(nodeInTable.Weight, edge.To, finish);
+            AddToDestinationTable(nodeInTable.Weight, edge.To, finish, parents, distance);
         }
     }
-
 }

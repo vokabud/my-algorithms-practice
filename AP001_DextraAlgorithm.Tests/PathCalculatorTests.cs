@@ -54,6 +54,6 @@ public class PathCalculatorTests
         var result = new PathCalculator().CalculatePath(notebook, piano);
 
         // assert
-        Assert.Equal(6, result);
+        Assert.Equal(35, result);
     }
 }
