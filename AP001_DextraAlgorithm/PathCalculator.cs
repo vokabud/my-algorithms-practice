@@ -2,74 +2,57 @@
 
 public class PathCalculator
 {
-    private class PriceTable
+    public Path CalculatePath(Node start, Node finish)
     {
-        public required string Parent { get; set; }
+        var parents = new Dictionary<Node, Node>();
+        var distance = new Dictionary<Node, int>();
 
-        public required string EdgeTo { get; set; }
+        MeasureDistanceFrom(0, start, parents, distance);
 
-        public int Weight { get; set; }
+        var node = finish;
+        var path = new Stack<Node>();
+
+        do
+        {
+            path.Push(node);
+            node = parents.ContainsKey(node)
+                ? parents[node]
+                : null;
+        }
+        while (node != null);
+
+        return new Path(distance[finish], path.ToList());
     }
 
-    List<PriceTable> DestinationTable = [];
-
-    public int CalculatePath(Node start, Node finish)
-    {
-        var parents = new Dictionary<string, Node>();
-        var distance = new Dictionary<string, int>();
-
-        DestinationTable = [];
-
-        AddToDestinationTable(0, start, finish, parents, distance);
-
-        var count = DestinationTable.Count();
-        Console.WriteLine(count);
-
-        var result = DestinationTable
-            .Where(_ => _.EdgeTo == finish.Name)
-            .OrderByDescending(_ => _.Weight)
-            .First()
-            .Weight;
-
-        return result;
-    }
-
-    private void AddToDestinationTable(
-        int weightToEdge,
+    private void MeasureDistanceFrom(
+        int distanceToNode,
         Node start,
-        Node finish,
-        Dictionary<string, Node> parents,
-        Dictionary<string, int> distance)
+        Dictionary<Node, Node> parents,
+        Dictionary<Node, int> distances)
     {
         foreach (var edge in start.Edges)
         {
-            var nodeInTable = DestinationTable
-                .FirstOrDefault(_ => _.EdgeTo == edge.To.Name);
+            var distance = edge.Weight + distanceToNode;
 
-            if (nodeInTable != null)
+            if (distances.ContainsKey(edge.To))
             {
-                if (edge.Weight + weightToEdge < nodeInTable.Weight)
+
+                if (distance < distances[edge.To])
                 {
-                    nodeInTable.Parent = start.Name;
-                    nodeInTable.Weight = edge.Weight + weightToEdge;
+                    parents[edge.To] = start;
+                    distances[edge.To] = distance;
                 }
             }
             else
             {
-                DestinationTable.Add(new PriceTable
-                {
-                    Parent = start.Name,
-                    EdgeTo = edge.To.Name,
-                    Weight = edge.Weight + weightToEdge
-                });
+                parents.Add(edge.To, start);
+                distances.Add(edge.To, distance);
             }
         }
 
         foreach (var edge in start.Edges)
         {
-            var nodeInTable = DestinationTable.First(_ => _.EdgeTo == edge.To.Name);
-
-            AddToDestinationTable(nodeInTable.Weight, edge.To, finish, parents, distance);
+            MeasureDistanceFrom(distances[edge.To], edge.To, parents, distances);
         }
     }
 }

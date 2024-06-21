@@ -23,7 +23,8 @@ public class PathCalculatorTests
         var result = new PathCalculator().CalculatePath(house, work);
 
         // assert
-        Assert.Equal(6, result);
+        Assert.Equal(6, result.Distance);
+        Assert.Equal("House -> School -> Park -> Work", result.ToString());
     }
 
     [Fact]
@@ -54,6 +55,7 @@ public class PathCalculatorTests
         var result = new PathCalculator().CalculatePath(notebook, piano);
 
         // assert
-        Assert.Equal(35, result);
+        Assert.Equal(35, result.Distance);
+        Assert.Equal("notebook -> vinyl -> drum -> piano", result.ToString());
     }
 }
