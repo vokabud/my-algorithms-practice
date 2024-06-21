@@ -5,7 +5,9 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AP001_DextraAlgorithm", "AP001_DextraAlgorithm\AP001_DextraAlgorithm.csproj", "{38B2B97F-EA17-4C00-8C68-C11B5157FC92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AP001_DextraAlgorithm.Tests", "AP001_DextraAlgorithm.Tests\AP001_DextraAlgorithm.Tests.csproj", "{DC465E3C-4029-4869-ABE4-D8B6571AAEA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AP001_DextraAlgorithm.Tests", "AP001_DextraAlgorithm.Tests\AP001_DextraAlgorithm.Tests.csproj", "{DC465E3C-4029-4869-ABE4-D8B6571AAEA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AP002_BreadthFirstSearch", "AP002_BreadthFirstSearch\AP002_BreadthFirstSearch.csproj", "{86719DF5-E5D3-40CD-AD9A-95BB73C51C24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{DC465E3C-4029-4869-ABE4-D8B6571AAEA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC465E3C-4029-4869-ABE4-D8B6571AAEA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC465E3C-4029-4869-ABE4-D8B6571AAEA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86719DF5-E5D3-40CD-AD9A-95BB73C51C24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86719DF5-E5D3-40CD-AD9A-95BB73C51C24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86719DF5-E5D3-40CD-AD9A-95BB73C51C24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86719DF5-E5D3-40CD-AD9A-95BB73C51C24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
